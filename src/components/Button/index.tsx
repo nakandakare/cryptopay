@@ -5,12 +5,13 @@ type ButtonProps = {
   text: string;
   height: number;
   noMargin?: boolean;
+  fontSize?: string;
 };
 
-const Button: FunctionComponent<ButtonProps> = ({ text, height, noMargin }) => {
+const Button: FunctionComponent<ButtonProps> = ({ text, height, noMargin, fontSize }) => {
   return (
     <Container height={height} noMargin={noMargin}>
-      <Text>{text}</Text>
+      <Text fontSize={fontSize}>{text}</Text>
     </Container>
   );
 };

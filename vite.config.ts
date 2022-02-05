@@ -1,17 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import ViteFonts from 'vite-plugin-fonts';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    tsconfigPaths(),
-    ViteFonts({
-      google: {
-        families: ['Source Sans Pro']
-      }
-    })
-  ]
+  plugins: [react(), tsconfigPaths()]
 });

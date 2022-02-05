@@ -24,7 +24,7 @@ const FinanceConnect = () => {
           </FinanaceText>
         </FinanceTexts>
       </FinanceContainer>
-      <Button text={'Connect wallet'} height={50} noMargin />
+      <Button text={'Connect Wallet'} height={50} noMargin fontSize={'1.2rem'} />
     </Container>
   );
 };

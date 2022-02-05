@@ -19,6 +19,7 @@ export const Container = styled.div`
 export const Text = styled.p`
   color: white;
   font-weight: 500;
+  font-size: ${(props: { fontSize?: string }) => (props.fontSize ? props.fontSize : '1rem')};
   margin: 0;
   display: flex;
   align-items: center;
