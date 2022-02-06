@@ -1,7 +1,12 @@
+import { EthereumCard } from 'components';
 import { Container } from './styles';
 
 const Payment = () => {
-  return <Container></Container>;
+  return (
+    <Container>
+      <EthereumCard />
+    </Container>
+  );
 };
 
 export default Payment;

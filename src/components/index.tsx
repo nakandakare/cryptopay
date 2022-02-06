@@ -6,4 +6,6 @@ export { default as DrawerItems } from './Drawer/DrawerItems';
 export { default as Drawer } from './Drawer';
 export { default as Main } from './Main';
 export { default as FinanceConnect } from './FinanceConnect';
+export { default as FinanceInformation } from './FinanceConnect/FinanceInformation';
 export { default as Payment } from './Payment';
+export { default as EthereumCard } from './EthereumCard';

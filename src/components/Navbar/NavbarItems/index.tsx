@@ -9,7 +9,7 @@ const NavbarItems: FunctionComponent = () => {
       {NAVBAR_ITEMS.map((item: string, index: number) => (
         <Item key={item + index}>{item}</Item>
       ))}
-      <Button text={'Connect'} height={40} />
+      <Button text={'Connect'} height={40} onClick={() => console.log('clicked')} />
     </Container>
   );
 };
