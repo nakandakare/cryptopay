@@ -20,7 +20,7 @@ const EthereumCard = () => {
           <EthereumIconContainer>
             <EthereumIcon />
           </EthereumIconContainer>
-          <InfoIcon />
+          <InfoIcon title={'Ethereum Card :)'} />
         </CardIcons>
         <WalletInfo>
           <ToAddress>0x7cC...c09409</ToAddress>

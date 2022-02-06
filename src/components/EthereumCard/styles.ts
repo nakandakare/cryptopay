@@ -33,16 +33,28 @@ export const EthereumIconContainer = styled.div`
   width: 2.5rem;
   height: 2.5rem;
   text-align: center;
+
+  &: hover {
+    cursor: pointer;
+  }
 `;
 
 export const EthereumIcon = styled(SiEthereum)`
   position: relative;
   top: 20%;
   font-size: 1.3rem;
+
+  &: hover {
+    cursor: pointer;
+  }
 `;
 
 export const InfoIcon = styled(BsInfoCircle)`
   color: white;
+
+  &: hover {
+    cursor: pointer;
+  }
 `;
 
 export const WalletInfo = styled.div``;
@@ -52,7 +64,6 @@ export const ToAddress = styled.div`
   color: white;
   width: 100%;
   border-radius: 0.5rem;
-  background-color: rgba(33, 37, 41, 0.8);
   overflow: hidden;
   padding 0.2rem;
   min-height: 1.5rem;

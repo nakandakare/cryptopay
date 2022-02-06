@@ -10,8 +10,7 @@ const FinanceInformation = () => {
           across the world
         </FinanaceTitle>
         <FinanaceText>
-          Send & Receive payments in any way <br />
-          easily with crypto using CRYPTOPAY
+          Send & Receive payments in any way easily with <br /> crypto using CRYPTOPAY
         </FinanaceText>
       </FinanceTexts>
     </FinanceContainer>

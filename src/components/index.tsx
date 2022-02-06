@@ -9,3 +9,4 @@ export { default as FinanceConnect } from './FinanceConnect';
 export { default as FinanceInformation } from './FinanceConnect/FinanceInformation';
 export { default as Payment } from './Payment';
 export { default as EthereumCard } from './EthereumCard';
+export { default as PaymentForm } from './PaymentForm';

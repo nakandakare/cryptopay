@@ -8,7 +8,7 @@ export const FinanceContainer = styled.div`
 `;
 
 export const FinanceImage = styled.img`
-  width: 31rem;
+  width: 26rem;
 `;
 
 export const FinanceTexts = styled.div`

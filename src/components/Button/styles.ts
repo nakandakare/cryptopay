@@ -1,15 +1,21 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: #6925bf;
+  background-color: ${(props: {
+    bgTransparent?: boolean;
+    height: number;
+    noMargin?: boolean;
+    border?: string;
+  }) => (props.bgTransparent ? 'transparent' : '#6925bf')};
   min-width: 6rem;
   width: 100%;
   height: ${(props: { height: number }) => `${props.height}px`};
   border-radius: 1.2rem;
-  margin: ${(props: { height: number; noMargin?: boolean }) => (props.noMargin ? 0 : '0 1rem')};
+  margin: ${(props: { noMargin?: boolean }) => (props.noMargin ? 0 : '0 1rem')};
   display: flex;
   align-items: center;
   justify-content: center;
+  border: ${(props: { border?: string }) => (props.border ? `solid 1px ${props.border}` : 'none')};
 
   &:hover {
     cursor: pointer;
