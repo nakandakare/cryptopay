@@ -5,6 +5,10 @@ export const Container = styled.div`
   background-color: rgb(39, 51, 89, 0.4);
   border-radius: 1rem;
   margin-top: 1.2rem;
+
+  @media (max-width: 479px) {
+    width: 20rem;
+  }
 `;
 
 export const InnerContainer = styled.div`

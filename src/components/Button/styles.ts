@@ -6,6 +6,7 @@ export const Container = styled.div`
     height: number;
     noMargin?: boolean;
     border?: string;
+    mdWidth?: string;
   }) => (props.bgTransparent ? 'transparent' : '#6925bf')};
   min-width: 6rem;
   width: 100%;
@@ -19,6 +20,10 @@ export const Container = styled.div`
 
   &:hover {
     cursor: pointer;
+  }
+
+  @media (max-width: 960px) {
+    width: ${(props: { mdWidth?: string }) => (props.mdWidth ? props.mdWidth : '100%')};
   }
 `;
 

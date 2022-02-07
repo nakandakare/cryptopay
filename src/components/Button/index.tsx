@@ -9,6 +9,7 @@ type ButtonProps = {
   noMargin?: boolean;
   fontSize?: string;
   bgTransparent?: boolean;
+  mdWidth?: string;
 };
 
 const Button: FunctionComponent<ButtonProps> = ({
@@ -18,7 +19,8 @@ const Button: FunctionComponent<ButtonProps> = ({
   fontSize,
   onClick,
   border,
-  bgTransparent
+  bgTransparent,
+  mdWidth
 }) => {
   return (
     <Container
@@ -26,6 +28,7 @@ const Button: FunctionComponent<ButtonProps> = ({
       noMargin={noMargin}
       onClick={onClick}
       border={border}
+      mdWidth={mdWidth}
       bgTransparent={bgTransparent}>
       <Text fontSize={fontSize}>{text}</Text>
     </Container>

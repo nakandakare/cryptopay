@@ -9,6 +9,10 @@ export const FinanceContainer = styled.div`
 
 export const FinanceImage = styled.img`
   width: 26rem;
+
+  @media (max-width: 479px) {
+    width: 20rem;
+  }
 `;
 
 export const FinanceTexts = styled.div`
@@ -24,10 +28,18 @@ export const FinanaceTitle = styled.div`
     radial-gradient(at 100% 60%, rgb(0, 0, 0) 0, transparent 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 479px) {
+    font-size: 2rem;
+  }
 `;
 
 export const FinanaceText = styled.div`
   font-size: 1rem;
   color: white;
   padding-top: 0.8rem;
+
+  @media (max-width: 479px) {
+    font-size: 0.875rem;
+  }
 `;
