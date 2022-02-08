@@ -1,17 +1,23 @@
 import { Button } from 'components';
+import { FunctionComponent } from 'react';
 import FinanceInformation from './FinanceInformation';
 import { Container } from './styles';
 
-const FinanceConnect = () => {
+type Props = {
+  connectWallet: () => void;
+  connectedShortedAccount: string;
+};
+
+const FinanceConnect: FunctionComponent<Props> = ({ connectWallet, connectedShortedAccount }) => {
   return (
     <Container>
       <FinanceInformation />
       <Button
-        text={'Connect Wallet'}
+        text={connectedShortedAccount ? connectedShortedAccount : 'Connect Wallet'}
         height={50}
         noMargin
         fontSize={'1.2rem'}
-        onClick={() => console.log('clicked')}
+        onClick={connectWallet}
       />
     </Container>
   );

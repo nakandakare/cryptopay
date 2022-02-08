@@ -10,3 +10,5 @@ export { default as FinanceInformation } from './FinanceConnect/FinanceInformati
 export { default as Payment } from './Payment';
 export { default as EthereumCard } from './EthereumCard';
 export { default as PaymentForm } from './PaymentForm';
+export { default as Loader } from './Loader';
+export { default as StyledInput } from './StyledInput';
