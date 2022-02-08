@@ -28,7 +28,7 @@ const PaymentForm: FunctionComponent<PaymentFormProps> = ({
       <InnerContainer>
         <Inputs>
           <StyledInput
-            placeholder="Address To"
+            placeholder="Address To (Ropsten Network)"
             name="addressTo"
             type="text"
             handleChange={handleFormChange}
