@@ -92,12 +92,14 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
         const transactionContract = getEthereumContract();
         const parsedAmount = ethers.utils.parseEther(amount);
 
+        setIsLoading(true);
         //transaction using etereum
         await ethereum.request({
           method: 'eth_sendTransaction',
           params: [{ from: connectedAccount, to: addressTo, gas: '0x5208', value: parsedAmount._hex }]
         });
 
+        //interact to smart contract paying gas fee to EVM
         const transactionHash = await transactionContract.addToBlockchain(
           addressTo,
           parsedAmount,
@@ -105,7 +107,6 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
           keyword
         );
 
-        setIsLoading(true);
         console.log(`Loading - ${transactionHash.hash}`);
         await transactionHash.wait();
         setIsLoading(false);
@@ -115,6 +116,7 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
         setTransactionCount(transactionCount.toNumber());
       } else {
         alert('Please install or connect metamask');
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -125,6 +127,14 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
 
   useEffect(() => {
     checkIfWalletIsConnected();
+
+    //remove connected account on wallet disconnect.
+    ethereum.on('accountsChanged', (accounts: string[]) => {
+      if (accounts.length < 1) {
+        setConnectedAccount('');
+        setConnectedShortedAccount('');
+      }
+    });
   }, []);
 
   return (

@@ -14,15 +14,15 @@ type PaymentFormProps = {
   handleFormChange: (e: any, name: string) => void;
   formData: FormProps;
   handleFormSubmit: () => void;
+  isLoading: boolean;
 };
 
 const PaymentForm: FunctionComponent<PaymentFormProps> = ({
   handleFormChange,
   formData,
-  handleFormSubmit
+  handleFormSubmit,
+  isLoading
 }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
   return (
     <Container>
       <InnerContainer>

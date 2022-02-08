@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { Container } from './styles';
 
 const Payment = () => {
-  const { handleFormChange, formData, sendTransaction } = useContext(TransactionContext);
+  const { handleFormChange, formData, sendTransaction, isLoading } = useContext(TransactionContext);
 
   const handleFormSubmit = () => {
     const { addressTo, amount, keyword, message } = formData;
@@ -22,6 +22,7 @@ const Payment = () => {
         handleFormChange={handleFormChange}
         formData={formData}
         handleFormSubmit={handleFormSubmit}
+        isLoading={isLoading}
       />
     </Container>
   );
