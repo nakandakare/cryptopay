@@ -4,7 +4,7 @@ export const useIsMobile = () => {
   const [isMobile, setisMobile] = useState<boolean>(false);
 
   useEffect(() => {
-    if (window.innerWidth <= 767) {
+    if (window.innerWidth <= 959) {
       setisMobile(true);
     } else {
       setisMobile(false);
@@ -12,7 +12,7 @@ export const useIsMobile = () => {
   });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth <= 767) {
+    if (window.innerWidth <= 959) {
       setisMobile(true);
     } else {
       setisMobile(false);

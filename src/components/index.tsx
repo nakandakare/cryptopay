@@ -12,3 +12,8 @@ export { default as EthereumCard } from './EthereumCard';
 export { default as PaymentForm } from './PaymentForm';
 export { default as Loader } from './Loader';
 export { default as StyledInput } from './StyledInput';
+export { default as StepsSection } from './StepsSection';
+export { default as Step } from './StepsSection/Step';
+export { default as Transactions } from './Transactions';
+export { default as Transaction } from './Transactions/Transaction';
+export { default as Footer } from './Footer';

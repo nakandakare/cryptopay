@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { Navbar, Main } from 'components';
+import { Navbar, Main, StepsSection, Transactions, Footer } from 'components';
 import { Container } from './styles';
 
 const App: FunctionComponent = () => {
@@ -7,6 +7,9 @@ const App: FunctionComponent = () => {
     <Container>
       <Navbar />
       <Main />
+      <StepsSection />
+      <Transactions />
+      <Footer />
     </Container>
   );
 };

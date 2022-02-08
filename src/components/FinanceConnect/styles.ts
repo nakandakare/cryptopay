@@ -9,7 +9,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 960px) {
+  @media (max-width: 959px) {
     margin-right: 0;
   }
 `;

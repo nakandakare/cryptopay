@@ -22,12 +22,12 @@ export const Container = styled.div`
     cursor: pointer;
   }
 
-  @media (max-width: 960px) {
+  @media (max-width: 959px) {
     width: ${(props: { mdWidth?: string }) => (props.mdWidth ? props.mdWidth : '100%')};
   }
 `;
 
-export const Text = styled.p`
+export const Text = styled.div`
   color: white;
   font-weight: 500;
   font-size: ${(props: { fontSize?: string }) => (props.fontSize ? props.fontSize : '1rem')};

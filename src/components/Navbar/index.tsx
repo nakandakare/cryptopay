@@ -1,13 +1,13 @@
 import { FunctionComponent, useContext, useState } from 'react';
 import { Container, DrawerIcon } from './styles';
 import { Logo, NavbarItems, Drawer } from 'components';
-import { useIsMobile } from 'hooks';
+import { useIsMobile } from 'hooks/useIsMobile';
 import { TransactionContext } from 'context/TransactionContext';
 
 const Navbar: FunctionComponent = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const { isMobile } = useIsMobile();
-  const { connectedShortedAccount, connectWallet } = useContext(TransactionContext);
+  const { connectedShortenAccount, connectWallet } = useContext(TransactionContext);
 
   return (
     <Container isMobile={isMobile}>
@@ -15,7 +15,7 @@ const Navbar: FunctionComponent = () => {
       {isMobile ? (
         <DrawerIcon onClick={() => setOpenDrawer(true)} />
       ) : (
-        <NavbarItems connectedShortedAccount={connectedShortedAccount} connectWallet={connectWallet} />
+        <NavbarItems connectedShortenAccount={connectedShortenAccount} connectWallet={connectWallet} />
       )}
       <Drawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
     </Container>

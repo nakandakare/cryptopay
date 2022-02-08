@@ -4,11 +4,11 @@ import { NAVBAR_ITEMS } from 'utils/constants';
 import { Button } from 'components';
 
 type Props = {
-  connectedShortedAccount: string;
+  connectedShortenAccount: string;
   connectWallet: () => void;
 };
 
-const NavbarItems: FunctionComponent<Props> = ({ connectedShortedAccount, connectWallet }) => {
+const NavbarItems: FunctionComponent<Props> = ({ connectedShortenAccount, connectWallet }) => {
   return (
     <Container>
       {NAVBAR_ITEMS.map((item: string, index: number) => (
@@ -18,7 +18,7 @@ const NavbarItems: FunctionComponent<Props> = ({ connectedShortedAccount, connec
         </ItemContainer>
       ))}
       <Button
-        text={connectedShortedAccount ? connectedShortedAccount : 'Connect'}
+        text={connectedShortenAccount ? connectedShortenAccount : 'Connect'}
         height={40}
         onClick={connectWallet}
       />

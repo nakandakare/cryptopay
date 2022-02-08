@@ -2,6 +2,7 @@
 import { createContext, useEffect, useState, FunctionComponent } from 'react';
 import { getEthereumContract } from 'utils/ethers';
 import { ethers } from 'ethers';
+import { shortenAddress } from 'utils/utils';
 
 export const TransactionContext = createContext<any>({});
 
@@ -18,13 +19,22 @@ type FormProps = {
   message: string;
 };
 
+type TransactionFromBlockcahin = {
+  receiver: string;
+  sender: string;
+  timestamp: any;
+  message: string;
+  keyword: string;
+  amount: any;
+};
+
 //objet from window if metamask is installed.
 const { ethereum } = window;
 
 export const TransactionProvider: FunctionComponent = ({ children }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [connectedAccount, setConnectedAccount] = useState<string>('');
-  const [connectedShortedAccount, setConnectedShortedAccount] = useState<string>('');
+  const [connectedShortenAccount, setConnectedShortenAccount] = useState<string>('');
   const [formData, setFormData] = useState<FormProps>({
     addressTo: '',
     amount: '',
@@ -34,13 +44,37 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
   const [transactionCount, setTransactionCount] = useState<string | number | null>(
     localStorage.getItem('transactionCount')
   );
+  const [allTransactions, setAllTransactions] = useState([]);
 
   const handleFormChange = (e: any, name: string) => {
     setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
   };
 
-  const makeAccountsShort = (str: string) => {
-    return str.substring(0, 3) + '...' + str.substring(str.length - 3, str.length);
+  const getAllTransactions = async () => {
+    try {
+      if (ethereum) {
+        const transactionContract = getEthereumContract();
+
+        const availableTransactions = await transactionContract.getAllTransactions();
+
+        const structuredTransactions = availableTransactions.map(
+          (transaction: TransactionFromBlockcahin) => ({
+            addressTo: transaction.receiver,
+            addressFrom: transaction.sender,
+            timestamp: new Date(transaction.timestamp.toNumber() * 1000).toLocaleString(),
+            message: transaction.message,
+            keyword: transaction.keyword,
+            amount: parseInt(transaction.amount._hex) / 10 ** 18
+          })
+        );
+
+        setAllTransactions(structuredTransactions);
+      } else {
+        console.log('Ethereum is not present');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const checkIfWalletIsInstalled = () => {
@@ -55,12 +89,12 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
 
       if (accounts.length) {
         setConnectedAccount(accounts[0]);
-        setConnectedShortedAccount(makeAccountsShort(accounts[0]));
+        setConnectedShortenAccount(shortenAddress(accounts[0]));
       } else {
         return console.log('no accounts found');
       }
 
-      //getAllTransactions();
+      getAllTransactions();
     } catch (error) {
       console.log(error);
 
@@ -75,11 +109,26 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
       //User connect wallet account.
       const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
       setConnectedAccount(accounts[0]);
-      setConnectedShortedAccount(makeAccountsShort(accounts[0]));
+      setConnectedShortenAccount(shortenAddress(accounts[0]));
     } catch (error) {
       console.log(error);
 
       throw new Error('No ethereum object.');
+    }
+  };
+
+  const checkIfTransactionsExists = async () => {
+    try {
+      if (ethereum) {
+        const transactionContract = getEthereumContract();
+        const currentTransactionCount = await transactionContract.getTransactionCount();
+
+        window.localStorage.setItem('transactionCount', currentTransactionCount);
+      }
+    } catch (error) {
+      console.log(error);
+
+      throw new Error('No ethereum object');
     }
   };
 
@@ -111,6 +160,7 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
         await transactionHash.wait();
         setIsLoading(false);
         console.log(`Success - ${transactionHash.hash}`);
+        alert('Transaction success');
 
         const transactionCount = await transactionContract.getTransactionCount();
         setTransactionCount(transactionCount.toNumber());
@@ -127,27 +177,31 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
 
   useEffect(() => {
     checkIfWalletIsConnected();
+    checkIfTransactionsExists();
 
     //remove connected account on wallet disconnect.
     ethereum.on('accountsChanged', (accounts: string[]) => {
       if (accounts.length < 1) {
         setConnectedAccount('');
-        setConnectedShortedAccount('');
+        setConnectedShortenAccount('');
       }
     });
-  }, []);
+  }, [transactionCount, connectedAccount]);
 
   return (
     <TransactionContext.Provider
       value={{
         connectWallet,
         connectedAccount,
-        connectedShortedAccount,
+        connectedShortenAccount,
         handleFormChange,
         formData,
         setFormData,
         sendTransaction,
-        isLoading
+        isLoading,
+        transactionCount,
+        allTransactions,
+        setAllTransactions
       }}>
       {children}
     </TransactionContext.Provider>

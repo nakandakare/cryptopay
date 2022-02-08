@@ -4,11 +4,11 @@ import { Container } from './styles';
 import { TransactionContext } from 'context/TransactionContext';
 
 const Main = () => {
-  const { connectWallet, connectedShortedAccount } = useContext(TransactionContext);
+  const { connectWallet, connectedShortenAccount } = useContext(TransactionContext);
 
   return (
     <Container>
-      <FinanceConnect connectWallet={connectWallet} connectedShortedAccount={connectedShortedAccount} />
+      <FinanceConnect connectWallet={connectWallet} connectedShortenAccount={connectedShortenAccount} />
       <Payment />
     </Container>
   );

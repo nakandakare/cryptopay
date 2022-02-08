@@ -5,15 +5,15 @@ import { Container } from './styles';
 
 type Props = {
   connectWallet: () => void;
-  connectedShortedAccount: string;
+  connectedShortenAccount: string;
 };
 
-const FinanceConnect: FunctionComponent<Props> = ({ connectWallet, connectedShortedAccount }) => {
+const FinanceConnect: FunctionComponent<Props> = ({ connectWallet, connectedShortenAccount }) => {
   return (
     <Container>
       <FinanceInformation />
       <Button
-        text={connectedShortedAccount ? connectedShortedAccount : 'Connect Wallet'}
+        text={connectedShortenAccount ? connectedShortenAccount : 'Connect Wallet'}
         height={50}
         noMargin
         fontSize={'1.2rem'}

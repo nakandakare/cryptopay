@@ -7,7 +7,7 @@ export const Container = styled.div`
   flex: 0 1 auto;
 `;
 
-export const ItemContainer = styled.p`
+export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +18,7 @@ export const ItemContainer = styled.p`
   }
 `;
 
-export const Item = styled.p`
+export const Item = styled.div`
   color: white;
   margin: 0;
   display: flex;
