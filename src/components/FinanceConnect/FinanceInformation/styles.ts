@@ -5,6 +5,7 @@ export const FinanceContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-bottom: 2rem;
+  align-items: center;
 `;
 
 export const FinanceImage = styled.img`
