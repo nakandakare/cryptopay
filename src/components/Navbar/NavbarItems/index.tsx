@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { Container, Item } from './styles';
+import { Container, Item, ItemContainer, SoonBadge } from './styles';
 import { NAVBAR_ITEMS } from 'utils/constants';
 import { Button } from 'components';
 
@@ -12,7 +12,10 @@ const NavbarItems: FunctionComponent<Props> = ({ connectedShortedAccount, connec
   return (
     <Container>
       {NAVBAR_ITEMS.map((item: string, index: number) => (
-        <Item key={item + index}>{item}</Item>
+        <ItemContainer key={item + index}>
+          <Item>{item}</Item>
+          <SoonBadge>soon</SoonBadge>
+        </ItemContainer>
       ))}
       <Button
         text={connectedShortedAccount ? connectedShortedAccount : 'Connect'}

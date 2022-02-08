@@ -6,6 +6,7 @@ import { Container } from './styles';
 
 const Payment = () => {
   const { handleFormChange, formData, sendTransaction, isLoading } = useContext(TransactionContext);
+  const { addressTo, amount } = formData;
 
   const handleFormSubmit = () => {
     const { addressTo, amount, keyword, message } = formData;
@@ -17,7 +18,7 @@ const Payment = () => {
 
   return (
     <Container>
-      <EthereumCard />
+      <EthereumCard addressTo={addressTo} amount={amount} />
       <PaymentForm
         handleFormChange={handleFormChange}
         formData={formData}

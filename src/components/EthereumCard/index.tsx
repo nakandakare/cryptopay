@@ -1,3 +1,4 @@
+import { FunctionComponent } from 'react';
 import {
   Container,
   InnerContainer,
@@ -12,7 +13,12 @@ import {
   CurrencyAndAmount
 } from './styles';
 
-const EthereumCard = () => {
+type Props = {
+  addressTo: string;
+  amount: string;
+};
+
+const EthereumCard: FunctionComponent<Props> = ({ addressTo, amount }) => {
   return (
     <Container>
       <InnerContainer>
@@ -23,10 +29,10 @@ const EthereumCard = () => {
           <InfoIcon title={'Ethereum Card :)'} />
         </CardIcons>
         <WalletInfo>
-          <ToAddress>0x7cC...c09409</ToAddress>
+          <ToAddress>{addressTo}</ToAddress>
           <CurrencyAndAmount>
             <Currency>Ethereum</Currency>
-            <Amount>$200</Amount>
+            <Amount>${amount ? amount : 0}</Amount>
           </CurrencyAndAmount>
         </WalletInfo>
       </InnerContainer>

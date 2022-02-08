@@ -7,6 +7,17 @@ export const Container = styled.div`
   flex: 0 1 auto;
 `;
 
+export const ItemContainer = styled.p`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 export const Item = styled.p`
   color: white;
   margin: 0;
@@ -14,8 +25,19 @@ export const Item = styled.p`
   font-weight: 500;
   padding: 0 1rem;
   height: fit-content;
+`;
 
-  &:hover {
-    cursor: pointer;
-  }
+export const SoonBadge = styled.div`
+  background-color: rgb(104, 104, 104);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-top: 0.2rem;
+  padding: 0 0.5rem;
+  padding-bottom: 0.2rem;
+  position: relative;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
 `;

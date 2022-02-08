@@ -68,6 +68,7 @@ export const ToAddress = styled.div`
   padding 0.2rem;
   min-height: 1.5rem;
   font-weight: 600;
+  word-break: break-all;
 `;
 
 export const CurrencyAndAmount = styled.div`
