@@ -6,7 +6,7 @@ import { TransactionContext } from 'context/TransactionContext';
 
 const Transactions = () => {
   const { allTransactions, connectedAccount } = useContext(TransactionContext);
-  const lastSixTransactions = allTransactions.slice(Math.max(allTransactions.length - 6, 0));
+  const lastSixTransactions = allTransactions.slice(Math.max(allTransactions.length - 6, 0)).reverse();
 
   return (
     <Container>

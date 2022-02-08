@@ -55,7 +55,7 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
       if (ethereum) {
         const transactionContract = getEthereumContract();
 
-        const availableTransactions = await transactionContract.getAllTransactions();
+        const availableTransactions = await transactionContract?.getAllTransactions();
 
         const structuredTransactions = availableTransactions.map(
           (transaction: TransactionFromBlockcahin) => ({
@@ -83,18 +83,19 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
 
   const checkIfWalletIsConnected = async () => {
     try {
-      checkIfWalletIsInstalled();
+      //checkIfWalletIsInstalled();
+      if (ethereum) {
+        const accounts = await ethereum.request({ method: 'eth_accounts' });
 
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
+        if (accounts.length) {
+          setConnectedAccount(accounts[0]);
+          setConnectedShortenAccount(shortenAddress(accounts[0]));
+        } else {
+          return console.log('no accounts found');
+        }
 
-      if (accounts.length) {
-        setConnectedAccount(accounts[0]);
-        setConnectedShortenAccount(shortenAddress(accounts[0]));
-      } else {
-        return console.log('no accounts found');
+        getAllTransactions();
       }
-
-      getAllTransactions();
     } catch (error) {
       console.log(error);
 
@@ -121,7 +122,7 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
     try {
       if (ethereum) {
         const transactionContract = getEthereumContract();
-        const currentTransactionCount = await transactionContract.getTransactionCount();
+        const currentTransactionCount = await transactionContract?.getTransactionCount();
 
         window.localStorage.setItem('transactionCount', currentTransactionCount);
       }
@@ -149,7 +150,7 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
         });
 
         //interact to smart contract paying gas fee to EVM
-        const transactionHash = await transactionContract.addToBlockchain(
+        const transactionHash = await transactionContract?.addToBlockchain(
           addressTo,
           parsedAmount,
           message,
@@ -162,7 +163,7 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
         console.log(`Success - ${transactionHash.hash}`);
         alert('Transaction success');
 
-        const transactionCount = await transactionContract.getTransactionCount();
+        const transactionCount = await transactionContract?.getTransactionCount();
         setTransactionCount(transactionCount.toNumber());
       } else {
         alert('Please install or connect metamask');
@@ -179,13 +180,15 @@ export const TransactionProvider: FunctionComponent = ({ children }) => {
     checkIfWalletIsConnected();
     checkIfTransactionsExists();
 
-    //remove connected account on wallet disconnect.
-    ethereum.on('accountsChanged', (accounts: string[]) => {
-      if (accounts.length < 1) {
-        setConnectedAccount('');
-        setConnectedShortenAccount('');
-      }
-    });
+    if (ethereum) {
+      //remove connected account on wallet disconnect.
+      ethereum.on('accountsChanged', (accounts: string[]) => {
+        if (accounts.length < 1) {
+          setConnectedAccount('');
+          setConnectedShortenAccount('');
+        }
+      });
+    }
   }, [transactionCount, connectedAccount]);
 
   return (

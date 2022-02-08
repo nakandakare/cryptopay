@@ -5,10 +5,12 @@ import { CONTRACT_ADDRESS, CONTRACT_ABI } from 'utils/constants';
 const { ethereum } = window;
 
 export const getEthereumContract = () => {
-  const provider = new ethers.providers.Web3Provider(ethereum);
-  const signer = provider.getSigner();
-  //Get contract functions usign abi
-  const transactionContract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+  if (ethereum) {
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const signer = provider.getSigner();
+    //Get contract functions usign abi
+    const transactionContract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
 
-  return transactionContract;
+    return transactionContract;
+  }
 };
